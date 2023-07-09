@@ -1,10 +1,24 @@
 package com.minhhoangtran.springjpa.entity;
 
-public class Course {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "course")
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "subject", nullable = false)
     private String subject;
+    @Column(name = "code", nullable = false)
     private String code;
+    @Column(name = "description", nullable = false)
     private String description;
 
     public Long getId() {

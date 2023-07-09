@@ -1,5 +1,9 @@
 package com.minhhoangtran.springjpa.repository;
 
-public interface GradeRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.minhhoangtran.springjpa.entity.Grade;
+
+public interface GradeRepository extends CrudRepository<Grade, Long> {
 
 }

@@ -22,8 +22,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student saveStudent(Student student) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveStudent'");
+        return studentRepository.save(student);
     }
 
     @Override
