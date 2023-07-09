@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.minhhoangtran.springjpa.entity.Grade;
+import com.minhhoangtran.springjpa.entity.Student;
 import com.minhhoangtran.springjpa.repository.GradeRepository;
+import com.minhhoangtran.springjpa.repository.StudentRepository;
 
 @Service
 public class GradeServiceImpl implements GradeService {
@@ -14,16 +16,19 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     GradeRepository gradeRepository;
 
+    @Autowired
+    StudentRepository studentRepository;
+
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGrade'");
+        return gradeRepository.findByStudentId(studentId);
     }
 
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveGrade'");
+        Student student = studentRepository.findById(studentId).get();
+        grade.setStudent(student);
+        return gradeRepository.save(grade);
     }
 
     @Override
