@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.minhhoangtran.springjpa.entity.Grade;
+import com.minhhoangtran.springjpa.repository.GradeRepository;
 
 @Service
 public class GradeServiceImpl implements GradeService {
 
     @Autowired
-    GradeService gradeService;
+    GradeRepository gradeRepository;
 
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
