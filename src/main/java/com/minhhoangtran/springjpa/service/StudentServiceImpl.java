@@ -16,8 +16,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudent(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getStudent'");
+        return studentRepository.findById(id).get();
     }
 
     @Override
@@ -27,14 +26,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudent(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteStudent'");
+        studentRepository.deleteById(id);
     }
 
     @Override
     public List<Student> getStudents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getStudents'");
+        return (List<Student>) studentRepository.findAll();
     }
 
 }
