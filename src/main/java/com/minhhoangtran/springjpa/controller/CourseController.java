@@ -13,18 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minhhoangtran.springjpa.entity.Course;
+import com.minhhoangtran.springjpa.service.CourseService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/course")
+@AllArgsConstructor
 public class CourseController {
+
+    CourseService courseService;
+
     @GetMapping("/{id}")
     public ResponseEntity<Course> getCourse(@PathVariable Long id) {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(courseService.getCourse(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Course> saveCourse(@RequestBody Course course) {
-        return new ResponseEntity<>(course, HttpStatus.CREATED);
+        return new ResponseEntity<>(courseService.saveCourse(course), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -34,6 +41,6 @@ public class CourseController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Course>> getCourses() {
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(courseService.getCourses(), HttpStatus.OK);
     }
 }
