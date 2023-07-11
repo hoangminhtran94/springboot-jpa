@@ -47,8 +47,8 @@ public class GradeServiceImpl implements GradeService {
         if (course == null) {
             throw new CourseNotFoundException(courseId);
         }
-        if(!student.getCourses().contains(course)) throw new StudentNotEnrolledException(studentId, courseId)
-        grade.setStudent(student);
+        if (!student.getCourses().contains(course))
+            throw new StudentNotEnrolledException(studentId, courseId);
         grade.setCourse(course);
         return gradeRepository.save(grade);
     }
