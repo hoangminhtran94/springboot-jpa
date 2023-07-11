@@ -66,26 +66,22 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public void deleteGrade(Long studentId, Long courseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteGrade'");
+        gradeRepository.deleteByStudentIdAndCourseId(studentId, courseId);
     }
 
     @Override
     public List<Grade> getStudentGrades(Long studentId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getStudentGrades'");
+        return gradeRepository.findByStudentId(studentId);
     }
 
     @Override
     public List<Grade> getCourseGrades(Long courseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCourseGrades'");
+        return gradeRepository.findByCourseId(courseId);
     }
 
     @Override
     public List<Grade> getAllGrades() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllGrades'");
+        return (List<Grade>) gradeRepository.findAll();
     }
 
 }
