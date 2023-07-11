@@ -1,8 +1,10 @@
 package com.minhhoangtran.springjpa.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.minhhoangtran.springjpa.entity.Course;
+import com.minhhoangtran.springjpa.entity.Student;
 
 public interface CourseService {
     Course getCourse(Long id);
@@ -12,4 +14,8 @@ public interface CourseService {
     void deleteCourse(Long id);
 
     List<Course> getCourses();
+
+    Course addStudentToCourse(Long studentId, Long courseId);
+
+    Set<Student> getEnrolledStudents(Long id);
 }

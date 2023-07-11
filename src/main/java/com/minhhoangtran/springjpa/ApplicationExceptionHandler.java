@@ -23,7 +23,8 @@ import com.minhhoangtran.springjpa.exception.StudentNotFoundException;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ CourseNotFoundException.class, GradeNotFoundException.class, StudentNotFoundException.class })
+    @ExceptionHandler({ CourseNotFoundException.class, GradeNotFoundException.class, StudentNotFoundException.class,
+            StudentNotFoundException.class })
     public ResponseEntity<Object> resourceNotFoundExceptionHandler(RuntimeException ex) {
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));
         return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);

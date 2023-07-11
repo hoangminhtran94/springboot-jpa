@@ -1,7 +1,9 @@
 package com.minhhoangtran.springjpa.service;
 
 import java.util.List;
+import java.util.Set;
 
+import com.minhhoangtran.springjpa.entity.Course;
 import com.minhhoangtran.springjpa.entity.Student;
 
 public interface StudentService {
@@ -12,4 +14,6 @@ public interface StudentService {
     void deleteStudent(Long id);
 
     List<Student> getStudents();
+
+    Set<Course> getEnrolledCourses(Long id);
 }

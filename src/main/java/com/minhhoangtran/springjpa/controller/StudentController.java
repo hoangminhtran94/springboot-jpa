@@ -1,6 +1,7 @@
 package com.minhhoangtran.springjpa.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.minhhoangtran.springjpa.entity.Course;
 import com.minhhoangtran.springjpa.entity.Student;
 import com.minhhoangtran.springjpa.service.StudentService;
 
@@ -41,6 +43,11 @@ public class StudentController {
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<Set<Course>> getEnrolledCourses(@PathVariable Long id) {
+        return new ResponseEntity<Set<Course>>(studentService.getEnrolledCourses(id), HttpStatus.OK);
     }
 
 }

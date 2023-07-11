@@ -10,6 +10,7 @@ import com.minhhoangtran.springjpa.entity.Grade;
 import com.minhhoangtran.springjpa.entity.Student;
 import com.minhhoangtran.springjpa.exception.CourseNotFoundException;
 import com.minhhoangtran.springjpa.exception.GradeNotFoundException;
+import com.minhhoangtran.springjpa.exception.StudentNotEnrolledException;
 import com.minhhoangtran.springjpa.exception.StudentNotFoundException;
 import com.minhhoangtran.springjpa.repository.CourseRepository;
 import com.minhhoangtran.springjpa.repository.GradeRepository;
@@ -46,6 +47,7 @@ public class GradeServiceImpl implements GradeService {
         if (course == null) {
             throw new CourseNotFoundException(courseId);
         }
+        if(!student.getCourses().contains(course)) throw new StudentNotEnrolledException(studentId, courseId)
         grade.setStudent(student);
         grade.setCourse(course);
         return gradeRepository.save(grade);
