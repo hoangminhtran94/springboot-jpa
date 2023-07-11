@@ -26,7 +26,12 @@ public class Grade {
     private Long id;
     @Column(name = "score", nullable = false)
     private String score;
+
     @ManyToOne(optional = false)
     @JoinColumn(referencedColumnName = "id", name = "student_id")
     private Student student;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(referencedColumnName = "id", name = "course_id")
+    private Course course;
 }
