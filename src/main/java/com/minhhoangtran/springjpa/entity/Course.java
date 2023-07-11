@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,12 +31,15 @@ public class Course {
     @Column(name = "id")
     private Long id;
     @NonNull
+    @NotBlank(message = "Subject is required")
     @Column(name = "subject", nullable = false)
     private String subject;
     @NonNull
+    @NotBlank(message = "Code is required")
     @Column(name = "code", nullable = false, unique = true)
     private String code;
     @NonNull
+    @NotBlank(message = "Description is required")
     @Column(name = "description", nullable = false)
     private String description;
     @JsonIgnore

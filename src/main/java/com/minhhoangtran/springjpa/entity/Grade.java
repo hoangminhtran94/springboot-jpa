@@ -1,5 +1,7 @@
 package com.minhhoangtran.springjpa.entity;
 
+import com.minhhoangtran.springjpa.validators.Score;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Grade {
     @Column(name = "id")
     private Long id;
     @Column(name = "score", nullable = false)
+    @Score
     private String score;
 
     @ManyToOne(optional = false)
