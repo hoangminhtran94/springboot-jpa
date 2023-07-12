@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User getUser(Long id) {
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+        
         return userRepository.save(user);
     }
 

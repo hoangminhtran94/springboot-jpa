@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.minhhoangtran.springjpa.entity.Course;
 import com.minhhoangtran.springjpa.entity.Student;
@@ -54,6 +56,11 @@ public class SpringJpaApplication implements CommandLineRunner {
 		for (int i = 0; i < courses.length; i++) {
 			courseRepository.save(courses[i]);
 		}
+
 	}
 
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
