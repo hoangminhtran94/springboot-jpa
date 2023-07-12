@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.minhhoangtran.springjpa.security.filter.AuthenticationFilter;
+
 import lombok.AllArgsConstructor;
 
 @Configuration
@@ -16,12 +18,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        authenticationFilter.setFilterProcessesUrl("/authenticate");
         http.headers(headers -> headers.frameOptions(Customizer.withDefaults()).disable()).csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         request -> request
                                 .requestMatchers("/error", "/h2/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .anyRequest().authenticated())
+                .addFilter(authenticationFilter)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
 
