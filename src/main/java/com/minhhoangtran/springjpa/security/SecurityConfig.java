@@ -9,6 +9,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.minhhoangtran.springjpa.security.filter.AuthenticationFilter;
+import com.minhhoangtran.springjpa.security.filter.ExceptionHandlerFilter;
 
 import lombok.AllArgsConstructor;
 
@@ -26,6 +27,7 @@ public class SecurityConfig {
                                 .requestMatchers("/error", "/h2/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .anyRequest().authenticated())
+                .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
                 .addFilter(authenticationFilter)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
