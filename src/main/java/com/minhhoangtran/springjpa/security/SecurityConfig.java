@@ -10,16 +10,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.minhhoangtran.springjpa.security.filter.AuthenticationFilter;
 import com.minhhoangtran.springjpa.security.filter.ExceptionHandlerFilter;
+import com.minhhoangtran.springjpa.security.manager.CustomAuthenticationManager;
 
 import lombok.AllArgsConstructor;
 
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
+    CustomAuthenticationManager customAuthenticationManager;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/authenticate");
         http.headers(headers -> headers.frameOptions(Customizer.withDefaults()).disable()).csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(

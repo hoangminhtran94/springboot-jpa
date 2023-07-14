@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.minhhoangtran.springjpa.exception.CourseNotFoundException;
+import com.minhhoangtran.springjpa.exception.EntityNotFoundException;
 import com.minhhoangtran.springjpa.exception.ErrorResponse;
 import com.minhhoangtran.springjpa.exception.GradeNotFoundException;
 import com.minhhoangtran.springjpa.exception.StudentNotFoundException;
@@ -26,7 +27,7 @@ import com.minhhoangtran.springjpa.exception.StudentNotFoundException;
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ CourseNotFoundException.class, GradeNotFoundException.class, StudentNotFoundException.class,
-            StudentNotFoundException.class })
+            StudentNotFoundException.class, EntityNotFoundException.class })
     public ResponseEntity<Object> resourceNotFoundExceptionHandler(RuntimeException ex) {
         ErrorResponse error = new ErrorResponse(Arrays.asList(ex.getMessage()));
         return new ResponseEntity<Object>(error, HttpStatus.NOT_FOUND);
