@@ -10,6 +10,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.minhhoangtran.springjpa.security.filter.AuthenticationFilter;
 import com.minhhoangtran.springjpa.security.filter.ExceptionHandlerFilter;
+import com.minhhoangtran.springjpa.security.filter.JWTAuthorizationFilter;
 import com.minhhoangtran.springjpa.security.manager.CustomAuthenticationManager;
 
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated())
                 .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)
                 .addFilter(authenticationFilter)
+                .addFilterAfter(new JWTAuthorizationFilter(), AuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
 
